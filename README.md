@@ -23,3 +23,14 @@ To include the camera data the non-linear measurement function get_hx(x) needed 
 
 Below is the RMSE plot after completing step 4:
 ![alt text](https://github.com/shirvonp/sensor_fusion/blob/main/RMSE_Step_4.png)
+
+
+## Benefits in camera-lidar fusion
+Although the RMSE gains from camera-lidar fusion vs lidar only was just marginally better, I still believe that it is necessary as sensors can fail or perform erratically and the more data we have to support the prediction is always better for robust performance.
+
+
+## Real Life Challenges
+In real life there could be challenges with weather affecting the sensors view and also occlusions that may occur on very busy roadways.
+
+## Improvements
+Further improvements may be realized by the adjusting of the parameters which allow for the confirming/deleting of tracks as well as the parameters which govern the gating function.
