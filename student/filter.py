@@ -31,7 +31,8 @@ class Filter:
         # TODO Step 1: implement and return system matrix F
         ############
         dt = params.dt
-        F = np.identity(6)
+        F = np.eye((params.dim_state))
+        F = np.asmatrix(F)
         F[0,3] = dt
         F[1,4] = dt
         F[2,5] = dt
@@ -46,19 +47,19 @@ class Filter:
         ############
         # TODO Step 1: implement and return process noise covariance Q
         ############
-        dt = params.dt
-        q = params.q
+        dt2 = params.dt ** 2
+        dt3 = params.dt ** 3
         
-        q1 = dt * q
-        q2 = ((dt**2)/2) * q 
-        q3 = ((dt**3)/3) * q
+        q_11 = dt3 * params.q / 3.0
+        q_13 = dt2 * params.q / 2.0
+        q_33 = params.dt * params.q
         
-        Q = np.matrix([[q3,0,0,q2,0,0],
-                      [0,q3,0,0,q2,0],
-                       [0,0,q3,0,0,q2],
-                       [q2,0,0,q1,0,0],
-                       [0,q2,0,0,q1,0],
-                       [0,0,q2,0,0,q1]
+        Q = np.matrix([[q_11, 0.0, 0.0, q_13, 0.0, 0.0],
+                       [0.0, q_11, 0.0, 0.0, q_13, 0.0],
+                       [0.0, 0.0, q_11, 0.0, 0.0, q_13],
+                       [q_13, 0.0, 0.0, q_33, 0.0, 0.0],
+                       [0.0, q_13, 0.0, 0.0, q_33, 0.0],
+                       [0.0, 0.0, q_13, 0.0, 0.0, q_33],
                       ])
                     
 
